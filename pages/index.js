@@ -191,7 +191,7 @@
 //                   </div>
 //                 </div>
 //                 {/* Add two more input fields here */}
-       
+
 //               </div>
 //               <div className="modal-footer">
 //                 <button
@@ -270,25 +270,113 @@
 //   );
 // }
 
-
-
-
-
-
-
-
-
-import React from "react";
+import React, { useState } from "react";
 // import {Button} from '@mui/base/Button'
 
-import { Typography } from "@mui/material";
+import { Typography, Button, TextField, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 
 export default function Home() {
+  const [inputs, setInputs] = useState({
+    name: "",
+    email: "",
+    password: "",
+    age : ""
+  });
+
+  const handleChange = (e) => {
+    setInputs((preState) => ({
+      ...preState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+  const handleSubmit = e => {
+    e.preventDefault()
+    console.log(inputs)
+  }
 
   return (
     <>
-   <Typography variant="button" sx={{color:'red'}}>Hello world</Typography>
-   
+      <Typography variant="button" sx={{ color: "red" }}>
+        Hello world
+      </Typography>
+      <Button variant="contained" size="large" sx={{ color: "red" }}>
+        first
+      </Button>
+      <Button
+        color="success"
+        variant="outlined"
+        size="medium"
+        sx={{ color: "red" }}
+      >
+        first
+      </Button>
+      <Button color="error" variant="text" size="small" sx={{ color: "red" }}>
+        first
+      </Button>
+      {/* <TextField
+     id=""
+     label=""
+     placeholder="name"
+     variant="outlined"
+     type="text"
+    //  value={}
+    //  onChange={}
+     
+   />
+   <TextField
+     id=""
+     label=""
+     placeholder="name"
+     variant="filled"
+     type="password"
+    //  value={}
+    //  onChange={}
+     
+   />
+   <TextField
+     id=""
+     label=""
+     placeholder="name"
+     variant="contained"
+     type="standard"
+    //  value={}
+    //  onChange={}
+     
+   /> */}
+
+      <form onSubmit={handleSubmit}>
+        <TextField
+          name="name"
+          value={inputs.name}
+          onChange={handleChange}
+          type={"text"}
+          sx={{ margin: 3 }}
+        ></TextField>
+        <TextField
+          name="email"
+          value={inputs.email}
+          onChange={handleChange}
+          type={"email"}
+          sx={{ margin: 3 }}
+        ></TextField>
+        <TextField
+          name="password"
+          value={inputs.password}
+          onChange={handleChange}
+          type={"password"}
+          sx={{ margin: 3 }}
+        ></TextField>
+        <Button  type="submit">Submit</Button>
+      </form>
+      <FormControl fullWidth>
+        <InputLabel>Age</InputLabel>
+          <Select name="age" value={inputs.age} label='age' onChange={handleChange}>
+              <MenuItem value={10}>Ten</MenuItem>
+              <MenuItem value={20}>Twenty</MenuItem>
+              <MenuItem value={30}>Thirty</MenuItem>
+
+          </Select>
+      </FormControl>
     </>
-  )
+  );
 }
