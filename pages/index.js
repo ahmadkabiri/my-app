@@ -273,17 +273,19 @@
 import React, { useState } from "react";
 // import {Button} from '@mui/base/Button'
 
-import { AppBar, Typography, Button, Toolbar } from "@mui/material";
+import { Tabs,Tab } from "@mui/material";
 
 export default function Home() {
+  const [value,setValue] = useState(1)
+
+
   return (
     <>
-      <AppBar>
-        <Toolbar>
-          <Typography>LOGO</Typography>
-          <Button variant="contained" color="error" sx = {{marginLeft : 'auto'}}>Hello</Button>
-        </Toolbar>
-      </AppBar>
+    <Tabs indicatorColor="secondary" textColor="secondary" value={value} onChange={(e,val) => setValue(val) }>
+      <Tab label='First'></Tab>
+      <Tab label='Second'></Tab>
+      <Tab label='Third'></Tab>
+    </Tabs>
     </>
   );
 }
